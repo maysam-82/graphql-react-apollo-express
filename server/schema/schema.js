@@ -1,6 +1,6 @@
 const graphql = require('graphql');
 
-const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID } = graphql;
 
 // dummy data
 var books = [
@@ -13,7 +13,7 @@ var books = [
 const BookType = new GraphQLObjectType({
 	name: 'Book',
 	fields: () => ({
-		id: { type: GraphQLString },
+		id: { type: GraphQLID },
 		name: { type: GraphQLString },
 		genre: { type: GraphQLString },
 	}),
@@ -26,7 +26,7 @@ const RootQuery = new GraphQLObjectType({
 		book: {
 			type: BookType,
 			args: {
-				id: { type: GraphQLString },
+				id: { type: GraphQLID },
 			},
 			resolve(parents, args) {
 				// code to get data from db / other sources. How gets data while someone is making a request
