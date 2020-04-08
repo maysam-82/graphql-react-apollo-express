@@ -9,6 +9,7 @@ app.use(
 	graphqlHTTP({
 		// shcema should be passed here
 		schema,
+		graphiql: true,
 	})
 );
 

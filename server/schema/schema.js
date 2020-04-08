@@ -30,7 +30,7 @@ const RootQuery = new GraphQLObjectType({
 			},
 			resolve(parents, args) {
 				// code to get data from db / other sources. How gets data while someone is making a request
-				return books.find(({ id }) => (id = args.id));
+				return books.find(({ id }) => id === args.id);
 			},
 		},
 	},
