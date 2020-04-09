@@ -17,10 +17,10 @@ export const getBookList = gql`
 		}
 	}
 `;
-
+// by adding query variable next to mutation we can add values to data base
 export const addBook = gql`
-	mutation {
-		addBook(name: "", genre: "", authorId: "") {
+	mutation($name: String!, $genre: String!, $authorId: ID!) {
+		addBook(name: $name, genre: $genre, authorId: $authorId) {
 			name
 			genre
 		}

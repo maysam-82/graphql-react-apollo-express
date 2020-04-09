@@ -41,7 +41,15 @@ class AddBook extends Component {
 	};
 	onFormSubmitHandler = (event) => {
 		event.preventDefault();
-		this.props.addBook();
+		const { name, genre, authorId } = this.state;
+		// passing variables to mutation
+		this.props.addBook({
+			variables: {
+				name,
+				genre,
+				authorId,
+			},
+		});
 	};
 	render() {
 		const { name, genre } = this.state;
