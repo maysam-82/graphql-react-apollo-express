@@ -32,9 +32,9 @@ const BookType = new GraphQLObjectType({
 		author: {
 			type: AuthorType,
 			// resolve function is for grabbing data
-			resolve(parents, args) {
+			resolve(parent, args) {
 				// parent here is books object which contains authorId
-				return authors.find(({ id }) => id === parents.authorId);
+				return authors.find(({ id }) => id === parent.authorId);
 			},
 		},
 	}),
@@ -50,8 +50,8 @@ const AuthorType = new GraphQLObjectType({
 		books: {
 			// It is going to be a list of BookTypes
 			type: new GraphQLList(BookType),
-			resolve(parents, args) {
-				return books.filter(({ authorId }) => authorId === parents.id);
+			resolve(parent, args) {
+				return books.filter(({ authorId }) => authorId === parent.id);
 			},
 		},
 	}),
@@ -66,7 +66,7 @@ const RootQuery = new GraphQLObjectType({
 			args: {
 				id: { type: GraphQLID },
 			},
-			resolve(parents, args) {
+			resolve(parent, args) {
 				// code to get data from db / other sources. How gets data while someone is making a request
 				return books.find(({ id }) => id === args.id);
 			},
@@ -76,8 +76,22 @@ const RootQuery = new GraphQLObjectType({
 			args: {
 				id: { type: GraphQLID },
 			},
-			resolve(parents, args) {
+			resolve(parent, args) {
 				return authors.find(({ id }) => id === args.id);
+			},
+		},
+		// it will return list of books and their authors since they connected to their relevant authors
+		books: {
+			type: new GraphQLList(BookType),
+			resolve(parent, args) {
+				return books;
+			},
+		},
+		// it will return list of authors and their books since they connected to their relevant books
+		authors: {
+			type: new GraphQLList(AuthorType),
+			resolve(parent, args) {
+				return authors;
 			},
 		},
 	},
