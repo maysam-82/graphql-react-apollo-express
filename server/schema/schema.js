@@ -5,19 +5,19 @@ const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, 
 // Every book has an Author and every Author has a collection of books.
 // dummy data
 var books = [
-	{ name: 'sample book 1', genre: 'sample genre 1', id: '1', authorId: '100' },
-	{ name: 'sample book 2', genre: 'sample genre 2', id: '2', authorId: '110' },
-	{ name: 'sample book 3', genre: 'sample genre 3', id: '3', authorId: '120' },
-	{ name: 'sample book 4', genre: 'sample genre 4', id: '4', authorId: '110' },
-	{ name: 'sample book 5', genre: 'sample genre 5', id: '5', authorId: '120' },
-	{ name: 'sample book 6', genre: 'sample genre 6', id: '6', authorId: '110' },
-	{ name: 'sample book 7', genre: 'sample genre 7', id: '7', authorId: '100' },
+	{ name: 'Learning Graphql', genre: 'Education', id: '1', authorId: '100' },
+	{ name: 'Learning  React', genre: 'Technology', id: '2', authorId: '110' },
+	{ name: 'Learning  Apollo', genre: 'Technology', id: '3', authorId: '120' },
+	{ name: 'Learning  Redux', genre: 'Education', id: '4', authorId: '110' },
+	{ name: 'Learning  HTML', genre: 'Internet', id: '5', authorId: '120' },
+	{ name: 'Learning  CSS', genre: 'Internet', id: '6', authorId: '110' },
+	{ name: 'Learning  JavaScript', genre: 'Computer programming', id: '7', authorId: '100' },
 ];
 // dummy data
 var authors = [
-	{ name: 'sample author 1', age: '41', id: '100' },
-	{ name: 'sample author 2', age: '42', id: '110' },
-	{ name: 'sample author 3', age: '43', id: '120' },
+	{ name: 'Maysam', age: '41', id: '100' },
+	{ name: 'Maysam-82', age: '42', id: '110' },
+	{ name: 'Sample Instructor', age: '43', id: '120' },
 ];
 
 const setRandomId = () => {
