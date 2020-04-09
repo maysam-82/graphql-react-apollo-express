@@ -6,18 +6,18 @@ const BookInfo = (props) => {
 	const displayBookInfo = () => {
 		const { book } = props.data;
 		if (!book) {
-			return <div className="loading">No book is selected. </div>;
+			return <div>No book is selected. </div>;
 		} else {
 			const { name: bookName, genre, author } = book;
 			const { age, name: authorName, books } = author;
 			return (
-				<div className="book-info-container">
-					<p className="book-info-title">Selected book information: </p>
+				<div>
+					<h4>Selected book information: </h4>
 					<p>Name of Book: {bookName}</p>
 					<p>Genre: {genre}</p>
 					<p>Author: {authorName}</p>
 					<p>age: {age}</p>
-					<p>other books written by {authorName}</p>
+					<h4>Other books written by {authorName}</h4>
 					<ul className="list-of-books-by-author">
 						{books.length !== 0
 							? books.map(({ name, id }) => (
