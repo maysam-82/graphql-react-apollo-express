@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
-import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
+import { getBookList } from '../../queries/queries';
 
-const getBookList = gql`
-	{
-		books {
-			name
-			id
-		}
-	}
-`;
 class BookList extends Component {
 	fetchBooks = () => {
 		const {
