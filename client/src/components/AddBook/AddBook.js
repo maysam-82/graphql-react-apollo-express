@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import * as compose from 'lodash.flowright';
-import { getAuthors, addBook } from '../../queries/queries';
+import { getAuthors, addBook, getBookList } from '../../queries/queries';
 
 class AddBook extends Component {
 	constructor(props) {
@@ -49,6 +49,8 @@ class AddBook extends Component {
 				genre,
 				authorId,
 			},
+			// tell apollo to go an refetch a particular query. we specify which query we want to be refetched after addBook mutation execution.
+			refetchQueries: [{ query: getBookList }],
 		});
 	};
 	render() {
