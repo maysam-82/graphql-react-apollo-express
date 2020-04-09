@@ -43,15 +43,18 @@ class AddBook extends Component {
 		event.preventDefault();
 		const { name, genre, authorId } = this.state;
 		// passing variables to mutation
-		this.props.addBook({
-			variables: {
-				name,
-				genre,
-				authorId,
-			},
-			// tell apollo to go an refetch a particular query. we specify which query we want to be refetched after addBook mutation execution.
-			refetchQueries: [{ query: getBookList }],
-		});
+		name &&
+			genre &&
+			authorId &&
+			this.props.addBook({
+				variables: {
+					name,
+					genre,
+					authorId,
+				},
+				// tell apollo to go an refetch a particular query. we specify which query we want to be refetched after addBook mutation execution.
+				refetchQueries: [{ query: getBookList }],
+			});
 	};
 	render() {
 		const { name, genre } = this.state;
