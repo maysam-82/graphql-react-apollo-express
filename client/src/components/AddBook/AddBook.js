@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { getAuthors } from '../../queries/queries';
+import * as compose from 'lodash.flowright';
+import { getAuthors, addBook } from '../../queries/queries';
 
 class AddBook extends Component {
 	constructor(props) {
@@ -14,8 +15,9 @@ class AddBook extends Component {
 	}
 
 	fetchAuthors = () => {
+		// since we are using compose, we have to use a name we assigned while exporting default component
 		const {
-			data: { loading, authors },
+			getAuthors: { loading, authors },
 		} = this.props;
 		if (loading) {
 			return (
@@ -39,6 +41,7 @@ class AddBook extends Component {
 	};
 	onFormSubmitHandler = (event) => {
 		event.preventDefault();
+		this.props.addBook();
 	};
 	render() {
 		const { name, genre } = this.state;
@@ -64,5 +67,5 @@ class AddBook extends Component {
 		);
 	}
 }
-
-export default graphql(getAuthors)(AddBook);
+// use compose method to bind multiple queries
+export default compose(graphql(getAuthors, { name: 'getAuthors' }), graphql(addBook, { name: 'addBook' }))(AddBook);

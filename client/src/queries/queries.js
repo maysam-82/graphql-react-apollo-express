@@ -17,3 +17,12 @@ export const getBookList = gql`
 		}
 	}
 `;
+
+export const addBook = gql`
+	mutation {
+		addBook(name: "", genre: "", authorId: "") {
+			name
+			genre
+		}
+	}
+`;
