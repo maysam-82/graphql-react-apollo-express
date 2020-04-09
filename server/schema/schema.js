@@ -20,6 +20,19 @@ var authors = [
 	{ name: 'sample author 3', age: '43', id: '120' },
 ];
 
+const setRandomId = () => {
+	const now = new Date();
+	return (
+		now.getFullYear() +
+		now.getMonth() +
+		now.getDate() +
+		now.getHours() +
+		now.getMinutes() +
+		now.getSeconds() +
+		now.getMilliseconds()
+	);
+};
+
 // define a new object type "BookType"
 const BookType = new GraphQLObjectType({
 	name: 'Book',
@@ -97,6 +110,43 @@ const RootQuery = new GraphQLObjectType({
 	},
 });
 
+const Mutation = new GraphQLObjectType({
+	name: 'Mutation',
+	fields: {
+		// adding new author to the dummy authors data
+		addAuthor: {
+			type: AuthorType,
+			args: {
+				name: { type: GraphQLString },
+				age: { type: GraphQLInt },
+			},
+			resolve(parent, args) {
+				const { name, age } = args;
+				const id = setRandomId();
+				const author = { name, age, id };
+				authors = [...authors, author];
+				return author;
+			},
+		},
+		addBook: {
+			type: BookType,
+			args: {
+				name: { type: GraphQLString },
+				genre: { type: GraphQLString },
+				authorId: { type: GraphQLID },
+			},
+			resolve(parent, args) {
+				const { name, genre, authorId } = args;
+				const id = setRandomId();
+				const book = { name, genre, authorId, id };
+				books = [...books, book];
+				return book;
+			},
+		},
+	},
+});
+
 module.exports = new GraphQLSchema({
 	query: RootQuery,
+	mutation: Mutation,
 });
